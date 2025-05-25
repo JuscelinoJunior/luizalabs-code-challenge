@@ -3,3 +3,11 @@ CREATE TABLE IF NOT EXISTS client (
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE
 );
+
+CREATE TABLE IF NOT EXISTS wishlist (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    client_id INT NOT NULL,
+    product_id VARCHAR(100) NOT NULL,
+    UNIQUE (client_id, product_id),
+    FOREIGN KEY (client_id) REFERENCES client(id) ON DELETE CASCADE
+);
