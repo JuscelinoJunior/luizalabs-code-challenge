@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 import schemas
 import repositories
@@ -13,7 +13,7 @@ def get_database_session():
     finally:
         database_session.close()
 
-@app.get("/clients", response_model=list[schemas.ClientResponse])
-def read_clients(skip: int = 0, limit: int = 100, database_session: Session = Depends(get_database_session)):
-    return repositories.read_clients(database_session, skip, limit)
 
+@app.get("/customers", response_model=list[schemas.CustomerResponse])
+def read_customers(skip: int = 0, limit: int = 100, database_session: Session = Depends(get_database_session)):
+    return repositories.read_customers(database_session, skip, limit)

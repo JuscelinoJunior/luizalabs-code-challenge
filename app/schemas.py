@@ -1,18 +1,18 @@
 from pydantic import BaseModel, EmailStr, Field
 from typing import Optional
 
-class ClientBase(BaseModel):
-    name: str = Field(..., min_length=2, max_length=100, description="Client full name")
+class CustomerBase(BaseModel):
+    name: str = Field(..., min_length=2, max_length=100, description="Customer full name")
     email: EmailStr = Field(..., description="Valid email address")
 
-class ClientCreate(ClientBase):
+class CustomerCreate(CustomerBase):
     pass
 
-class ClientUpdate(BaseModel):
+class CustomerUpdate(BaseModel):
     name: Optional[str] = Field(None, min_length=2, max_length=100)
     email: Optional[EmailStr] = None
 
-class ClientResponse(ClientBase):
+class CustomerResponse(CustomerBase):
     id: int
 
     class Config:
