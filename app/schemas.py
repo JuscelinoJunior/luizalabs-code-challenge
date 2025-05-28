@@ -17,3 +17,13 @@ class CustomerResponse(CustomerBase):
 
     class Config:
         orm_mode = True
+
+class WishlistProductResponse(BaseModel):
+    id: int
+    title: str
+    image: str
+    price: float
+    reviewScore: float
+
+    class Config:
+        orm_mode = True

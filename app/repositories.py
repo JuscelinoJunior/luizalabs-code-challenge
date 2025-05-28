@@ -40,3 +40,26 @@ def delete_customer(database_session: Session, customer_id: int):
     customer_model = read_customer(database_session, customer_id)
     database_session.delete(customer_model)
     database_session.commit()
+
+
+def is_product_in_wishlist(database_session: Session, customer_id: int, product_id: str) -> bool:
+    return database_session.query(models.Wishlist).filter_by(customer_id=customer_id, product_id=product_id).first() is not None
+
+
+def add_product_to_wishlist(database_session: Session, customer_id: int, product_id: str):
+    retrieved_wishlist_register = models.Wishlist(customer_id=customer_id, product_id=product_id)
+    database_session.add(retrieved_wishlist_register)
+    database_session.commit()
+    database_session.refresh(retrieved_wishlist_register)
+    return retrieved_wishlist_register
+
+
+def get_wishlist(database_session: Session, customer_id: int):
+    return database_session.query(models.Wishlist).filter_by(customer_id=customer_id).all()
+
+
+def remove_product_from_wishlist(database_session: Session, customer_id: int, product_id: str):
+    retrieved_wishlist_register = database_session.query(models.Wishlist).filter_by(customer_id=customer_id, product_id=product_id).first()
+    if retrieved_wishlist_register:
+        database_session.delete(retrieved_wishlist_register)
+        database_session.commit()

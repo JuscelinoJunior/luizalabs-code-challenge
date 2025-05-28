@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Camiseta Preta",
+    "price": 59.90,
+    "brand": "Adidas",
+    "reviewScore": 4.5,
+    "image": "https://via.placeholder.com/300x300?text=Camiseta+Preta"
+  },
+  {
+    "id": 2,
+    "title": "Tênis Branco",
+    "price": 199.99,
+    "brand": "Adidas",
+    "reviewScore": 4.5,
+    "image": "https://via.placeholder.com/300x300?text=T%C3%AAnis+Branco"
+  },
+  {
+    "id": 3,
+    "title": "Relógio Esportivo",
+    "price": 349.00,
+    "brand": "Adidas",
+    "reviewScore": 4.5,
+    "image": "https://via.placeholder.com/300x300?text=Rel%C3%B3gio"
+  },
+  {
+    "id": 4,
+    "title": "Jaqueta Jeans",
+    "price": 229.90,
+    "brand": "Adidas",
+    "reviewScore": 4.5,
+    "image": "https://via.placeholder.com/300x300?text=Jaqueta+Jeans"
+  },
+  {
+    "id": 5,
+    "title": "Boné Azul",
+    "price": 39.90,
+    "brand": "Adidas",
+    "reviewScore": 4.5,
+    "image": "https://via.placeholder.com/300x300?text=Bon%C3%A9+Azul"
+  }
+]
