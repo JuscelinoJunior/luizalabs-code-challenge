@@ -1,21 +1,21 @@
 from sqlalchemy import Column, Integer, String, UniqueConstraint, ForeignKey
 from sqlalchemy.orm import relationship, backref
-from database import Base
-
-class Customer(Base):
-    __tablename__ = "customer"
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String(100), nullable=False)
-    email = Column(String(100), nullable=False, unique=True)
-
-    __table_args__ = (UniqueConstraint('email', name='uix_email'),)
+from app.database import Base
 
 class Wishlist(Base):
     __tablename__ = "wishlist"
-    id = Column(Integer, primary_key=True, index=True)
-    customer_id = Column(Integer, ForeignKey("customer.id", ondelete="CASCADE"), nullable=False)
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
     product_id = Column(Integer, nullable=False)
 
-    customer = relationship("Customer", backref=backref("wishlist", lazy="select"))
+    user = relationship("User", backref=backref("wishlist", lazy="select"))
 
-    __table_args__ = (UniqueConstraint("customer_id", "product_id", name="_customer_product_uc"),)
+    __table_args__ = (UniqueConstraint("user_id", "product_id", name="_user_product_uc"),)
+
+class User(Base):
+    __tablename__ = "user"
+    id = Column(Integer, primary_key=True)
+    email = Column(String, unique=True)
+    name = Column(String)
+    hashed_password = Column(String)
+    role = Column(String, default="customer")

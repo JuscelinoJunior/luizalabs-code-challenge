@@ -4,6 +4,8 @@ from unittest.mock import patch, mock_open, Mock
 from fastapi import HTTPException
 from app.services import get_mock_product, fetch_product_data
 import httpx
+from app.utils import verify_password
+
 
 def test_get_mock_product_success():
     mock_data = json.dumps([
@@ -53,7 +55,6 @@ def test_fetch_product_data_real_success(mock_get):
     assert result["title"] == "API Product"
 
 
-
 @patch("httpx.get")
 def test_fetch_product_data_real_failure(mock_get):
     mock_response = Mock()
@@ -75,3 +76,16 @@ def test_fetch_product_data_real_failure(mock_get):
     assert exc_info.value.status_code == 503
     assert "Product API service unavailable" in str(exc_info.value.detail)
 
+@patch("app.utils.pwd_context.verify")
+def test_verify_password_success(mock_verify):
+    mock_verify.return_value = True
+    result = verify_password("plain123", "hashed123")
+    assert result is True
+    mock_verify.assert_called_once_with("plain123", "hashed123")
+
+@patch("app.utils.pwd_context.verify")
+def test_verify_password_failure(mock_verify):
+    mock_verify.return_value = False
+    result = verify_password("wrongpassword", "hashed123")
+    assert result is False
+    mock_verify.assert_called_once_with("wrongpassword", "hashed123")

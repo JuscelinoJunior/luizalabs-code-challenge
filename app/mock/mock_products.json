@@ -38,5 +38,13 @@
     "brand": "Adidas",
     "reviewScore": 4.5,
     "image": "https://via.placeholder.com/300x300?text=Bon%C3%A9+Azul"
+  },
+  {
+    "id": 6,
+    "title": "Camisa Azul",
+    "price": 39.90,
+    "brand": "Nike",
+    "reviewScore": 4.7,
+    "image": "https://via.placeholder.com/300x300?text=Camisa+Azul"
   }
 ]
