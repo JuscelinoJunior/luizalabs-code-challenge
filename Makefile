@@ -17,5 +17,5 @@ logs:
 	docker-compose logs -f
 
 test:
-	pip3 install -r requirements.txt
+	python3 -m pip install -r requirements.txt
 	DATABASE_URL="mysql+pymysql://root:root@mysql:3306/wishlist_db" PYTHONPATH=. pytest
